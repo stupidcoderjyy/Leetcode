@@ -1,4 +1,4 @@
-package array;
+package array.double_pointers;
 
 public class L11 {
     /*

@@ -1,4 +1,4 @@
-package array;
+package array.binary_search;
 
 public class L35 {
     public int searchInsert(int[] nums, int target) {

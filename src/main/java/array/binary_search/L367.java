@@ -1,4 +1,4 @@
-package array;
+package array.binary_search;
 
 public class L367 {
     public boolean isPerfectSquare(int num) {

@@ -1,4 +1,4 @@
-package array;
+package array.binary_search;
 
 public class L34 {
     public int[] searchRange(int[] nums, int target) {
