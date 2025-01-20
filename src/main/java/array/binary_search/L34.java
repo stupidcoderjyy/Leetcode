@@ -10,36 +10,31 @@ public class L34 {
     }
 
     public int findFirst(int[] nums, int target) {
-        // [l,r]
         int l = 0, r = nums.length - 1;
         while (l <= r) {
             int m = l + ((r - l) >> 1);
-            if (nums[m] > target) {
-                r = m - 1;
-            } else if (nums[m] < target) {
+            if (target > nums[m]) {
                 l = m + 1;
-            } else if (m == 0 || nums[m - 1] != target) {
-                return m;
-            } else {
+            } else if (target < nums[m] || (m > 0 && nums[m - 1] == target)) {
                 r = m - 1;
+            } else {
+                return m;
             }
         }
         return -1;
     }
 
     public int findLast(int[] nums, int target) {
-        // [l,r]
-        int l = 0, r = nums.length - 1;
+        final int N = nums.length;
+        int l = 0, r = N - 1;
         while (l <= r) {
             int m = l + ((r - l) >> 1);
-            if (nums[m] > target) {
+            if (target < nums[m]) {
                 r = m - 1;
-            } else if (nums[m] < target) {
+            } else if (target > nums[m] || (m < N - 1 && nums[m + 1] == target)) {
                 l = m + 1;
-            } else if (m == nums.length - 1 || nums[m + 1] != target) {
-                return m;
             } else {
-                l = m + 1;
+                return m;
             }
         }
         return -1;

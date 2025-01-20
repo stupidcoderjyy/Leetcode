@@ -2,16 +2,24 @@ package array.elements_remove;
 
 public class L26 {
     public int removeDuplicates(int[] nums) {
-        int next = 0;
-        int forward = 0;
-        final int n = nums.length;
-        while (forward < n) {
-            int val = nums[forward++];
-            nums[next++] = val;
-            while (forward < n && nums[forward] == val) {
-                forward++;
+        int f = 0, s = 0;
+        L1:
+        while (true) {
+            if (f == nums.length) {
+                break;
+            }
+            int t = nums[f++];
+            nums[s++] = t;
+            while (true) {
+                if (f == nums.length) {
+                    break L1;
+                }
+                if (nums[f] != t) {
+                    break;
+                }
+                f++;
             }
         }
-        return next;
+        return s;
     }
 }

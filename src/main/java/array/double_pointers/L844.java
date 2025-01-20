@@ -2,43 +2,46 @@ package array.double_pointers;
 
 public class L844 {
     public boolean backspaceCompare(String s, String t) {   //ERROR 算法设计错误
-        final int N1 = s.length(), N2 = t.length();
-        int check1 = N1 - 1, check2 = N2 - 1;
-        int unhandled = 0;  //未处理的'#'数量
+        final byte[] B1 = s.getBytes(), B2 = t.getBytes();
+        final int N1 = B1.length, N2 = B2.length;
+        int f1 = N1 - 1;
+        int f2 = N2 - 1;
+        int uh = 0;
         while (true) {
             while (true) {
-                //检查连续的'#'
-                while (check1 >= 0 && s.charAt(check1) == '#') {
-                    unhandled++;
-                    check1--;
-                }
-                //处理结束
-                if (unhandled == 0) {
+                if (f1 < 0) {
+                    uh = 0;
                     break;
                 }
-                //处理'#'
-                unhandled--;
-                check1--;
+                if (B1[f1] == '#') {
+                    uh++;
+                } else if (uh > 0) {
+                    uh--;
+                } else {
+                    break;
+                }
+                f1--;
             }
             while (true) {
-                while (check2 >= 0 && t.charAt(check2) == '#') {
-                    unhandled++;
-                    check2--;
-                }
-                if (unhandled == 0) {
+                if (f2 < 0) {
+                    uh = 0;
                     break;
                 }
-                unhandled--;
-                check2--;
+                if (B2[f2] == '#') {
+                    uh++;
+                } else if (uh > 0) {
+                    uh--;
+                } else {
+                    break;
+                }
+                f2--;
             }
-            if (check1 < 0 || check2 < 0) {
-                return check1 < 0 && check2 < 0;
+            if (f1 < 0 || f2 < 0) {
+                return f1 < 0 && f2 < 0;
             }
-            if (s.charAt(check1) != t.charAt(check2)) {
+            if (B1[f1--] != B2[f2--]) {
                 return false;
             }
-            check1--;
-            check2--;
         }
     }
 }
