@@ -1,7 +1,5 @@
 package stack_and_deque;
 
-import java.util.Stack;
-
 public class L1047 {
     //双指针
     public String removeDuplicates2(String s) {
